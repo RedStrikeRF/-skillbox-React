@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Форма ввода ФИО</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .form-container {
+        max-width: 400px;
+        margin: 50px auto;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <form id="nameForm">
+            <div class="form-group">
+                <label for="inputLastName">Фамилия</label>
+                <input type="text" class="form-control" id="inputLastName" onkeydown="return isValidInput(event)" onblur="formatInput(this)">
+            </div>
+            <div class="form-group">
+                <label for="inputFirstName">Имя</label>
+                <input type="text" class="form-control" id="inputFirstName" onkeydown="return isValidInput(event)" onblur="formatInput(this)">
+            </div>
+            <div class="form-group">
+                <label for="inputPatronymic">Отчество</label>
+                <input type="text" class="form-control" id="inputPatronymic" onkeydown="return isValidInput(event)" onblur="formatInput(this)">
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+        <div id="output"></div>
+    </div>
+</div>
+
+<script src="./main.js">
+</script>
+</body>
+</html>
