@@ -1,45 +1,54 @@
 export class Card {
   constructor(container, cardNumber, flip) {
     this.container = container;
-    this.createCard();
-    this.flipCard = flip;
-    this.cardNumber = cardNumber;
+    this.flip = flip;
+    this.createElement();
+    this.cardContent = cardNumber;
+    this.success = false;
     this.open = false;
-    this.addListener();
   }
 
-  createCard() {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    this._cardElement = card;
-    this.container.append(card);
+  createElement(cardNumber) {
+    this.card = document.createElement('button');
+    this.card.classList.add('card');
+
+    this.cardDown = document.createElement('div');
+    this.cardDown.classList.add('cardDown');
+    this.card.append(this.cardDown);
+
+    this.cardUp = document.createElement('div');
+    this.cardUp.classList.add('cardUp');
+    this.card.append(this.cardUp);
+
+    this.container.append(this.card);
   }
 
-  addListener() {
-    this._cardElement.addEventListener('click', () => {
-      this.flipCard(this._cardElement);
-    })
+  set cardContent(number) {
+    this._cardContent = number;
+    this.cardDown.textContent = this._cardContent;
   }
 
-  set cardNumber(value) {
-    this._cardNumber = value;
+  get cardContent() {
+    return this._cardContent;
+  }
+  
+  set success(value) {
+    this._success = value;
+    // this.cardUp.display = value ? 'none' : 'flex';
+    this.cardDown.style.filter = value ? 'hue-rotate(120deg)' : 'none';
+    this.card.disabled = value;
   }
 
-  get cardNumber() {
-    return this._cardNumber;
-  }
-
-  set open(value) {
-    if (value) {
-      this._cardElement.textContent = this._cardNumber;
-    } else {
-      this._cardElement.textContent = "";
-    }
-
-    this._open = value;
+  get success() {
+    return this._success;
   }
 
   get open() {
     return this._open;
+  }
+
+  set open(value) {
+    this.cardUp.style.display = value ? 'none' : 'flex';
+    this._open = value;
   }
 }

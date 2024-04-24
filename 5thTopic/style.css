@@ -6,6 +6,8 @@
 
 .card-container {
   display: flex;
+  max-width: 80%;
+  margin: 150px auto;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -15,10 +17,48 @@
 
 .card {
   display: flex;
+  position: relative;
+  z-index: 100;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   border: 1px solid black;
   border-radius: 10px;
+}
+
+.cardUp {
+  display: flex;
+  position: absolute;
+  z-index: 10000;
+  background-color: black;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+
+.cardDown {
+  display: flex;
+  position: absolute;
+  background-color: gray;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 30px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.img {
+  border-radius: 15px;
+  position: absolute;
+  width: 80px;
+  height: 80px;
 }
