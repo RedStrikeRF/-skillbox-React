@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Прототипное наследование</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototype Chain Viewer</title>
+<style>
+    .error {
+        border: 2px solid red;
+    }
+</style>
 </head>
 <body>
-  <h1>Инструмент просмотра цепочки прототипов</h1>
-  <form>
-    <input type="text" id="input-class" placeholder="Введите название класса или модуля" />
-    <button type="submit" id="btn-submit">Показать цепочку прототипов</button>
-  </form>
-  <div id="prototypes-container"></div>
-  <script type="module" src="./JS/main.js"></script>
+    <label for="classNameInput">Введите название класса:</label>
+    <input type="text" id="classNameInput">
+    <button id="showPrototypeChainBtn">Показать цепочку прототипов</button>
+    <div id="prototypeChain"></div>
+
+    <script type="module" src="./app.js"></script>
 </body>
 </html>
