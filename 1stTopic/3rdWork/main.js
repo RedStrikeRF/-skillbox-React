@@ -1,16 +1,20 @@
-const scrollButton = document.getElementById('scroll-top-btn');
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollButton = document.getElementById('scroll-top-btn');
 
-window.addEventListener('scroll', () => {
-  if (window.pageYOffset > 100) {
-    scrollButton.classList.add('show');
-  } else {
-    scrollButton.classList.remove('show');
-  }
-}, { passive: true });
+  window.addEventListener('scroll', () => {
+      if (document.documentElement.scrollTop > 100) {
+          scrollButton.classList.add('show');
+      } else {
+          scrollButton.classList.remove('show');
+      }
+  }, { passive: true });
+
+  scrollButton.addEventListener('click', scrollToTop);
+});
 
 function scrollToTop() {
   window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+      top: 0,
+      behavior: 'smooth'
   });
 }
