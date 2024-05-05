@@ -2,7 +2,8 @@ import {el, setChildren} from 'redom';
 import validator from 'validator';
 import valid from 'card-validator';
 import { createCardNumberField, createInputField } from './JS/createFormFields.js';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../src/style.css';
 
 const formDiv = el('div', {class: 'container py-5 col-8'});
 export const btn = el('button', 'Отправить', {class: "btn btn-primary", disabled: true});
@@ -13,6 +14,7 @@ setChildren(formDiv, [
     createInputField('Email', 'mail', "email", validator.isEmail),
     btn,
 ]);
+
 setChildren(window.document.body, formDiv);
 
 

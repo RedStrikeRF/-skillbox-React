@@ -1,9 +1,6 @@
 import { switchStorage, getCurrentStorage, saveData, loadData } from './storageSwitcher.js';
-import localStorageStorage from './localStorageStorage.js';
 
-const todos = loadData();
-
-const renderTodoList = () => {
+const renderTodoList = (todos) => {
     const todoListContainer = document.getElementById('todoList');
     todoListContainer.innerHTML = '';
 
@@ -34,7 +31,7 @@ const renderTodoList = () => {
         deleteBtn.addEventListener('click', () => {
             todos.splice(index, 1);
             saveData(todos);
-            renderTodoList();
+            renderTodoList(todos); // Перерисовать список после удаления
         });
     });
 };
@@ -53,21 +50,26 @@ addTodoForm.addEventListener('submit', (event) => {
     const todoTitleInput = document.getElementById('todoTitleInput');
     const title = todoTitleInput.value.trim();
     if (title) {
+        const todos = loadData(); // Загрузить актуальные данные
         todos.push({ title, completed: false });
         saveData(todos);
         todoTitleInput.value = '';
-        renderTodoList();
+        renderTodoList(todos);
     }
 });
 
 const switchStorageBtn = document.createElement('button');
 switchStorageBtn.className = 'btn btn-secondary mb-3';
 switchStorageBtn.textContent = getCurrentStorage() === localStorageStorage ? 'Перейти на серверное хранилище' : 'Перейти на локальное хранилище';
-switchStorageBtn.addEventListener('click', () => {
+switchStorageBtn.addEventListener('click', async () => {
     switchStorage();
     switchStorageBtn.textContent = getCurrentStorage() === localStorageStorage ? 'Перейти на серверное хранилище' : 'Перейти на локальное хранилище';
-    // Перезагрузка приложения
-    location.reload();
+    try {
+        const todos = await loadData(); // Загрузить актуальные данные
+        renderTodoList(todos);
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+    }
 });
 
 const appContainer = document.getElementById('app');
@@ -79,4 +81,12 @@ todoListContainer.id = 'todoList';
 todoListContainer.className = 'list-group mt-3';
 appContainer.appendChild(todoListContainer);
 
-renderTodoList();
+// Загрузить и отобразить список задач при загрузке страницы
+(async () => {
+    try {
+        const todos = await loadData();
+        renderTodoList(todos);
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+    }
+})();
