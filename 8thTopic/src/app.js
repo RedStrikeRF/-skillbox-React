@@ -1,3 +1,5 @@
+import "babel-polyfill";
+
 import {el, setChildren} from 'redom';
 import validator from 'validator';
 import valid from 'card-validator';

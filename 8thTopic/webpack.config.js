@@ -1,11 +1,10 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
+module.exports = (env) => ({
   entry: './src/app.js',
-  mode: 'production',
   output: {
-    filename: 'main.[contenthash].js', // Добавляем контрольную сумму (hash) в название файла
+    filename: 'main.[contenthash].js',
     publicPath: "/"
   },
   module: {
@@ -13,7 +12,7 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          env.prod ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader'
         ]
       },
@@ -22,7 +21,7 @@ module.exports = {
         type: 'asset/resource',
       },
       {
-        test: /\.m?js$/,
+        test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -37,7 +36,14 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
+      title: 'developmentPayment'
     }),
-    new MiniCssExtractPlugin(),
-  ]
-};
+    new MiniCssExtractPlugin({
+      filename: "main.[contenthash].css"
+    }),
+  ],
+  devServer: {
+    hot: true,
+    historyApiFallback: true
+  }
+});

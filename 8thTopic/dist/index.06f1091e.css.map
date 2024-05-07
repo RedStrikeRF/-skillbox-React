@@ -1,1 +1,0 @@
-{"mappings":"ACAA,4BAGA","sources":["index.06f1091e.css","src/style.css"],"sourcesContent":[".wrong {\n  border: 2px solid red;\n}\n\nimg {\n  width: 60px;\n  height: 60px;\n}\n/*# sourceMappingURL=index.06f1091e.css.map */\n",".wrong{\r\n    border: 2px solid red;\r\n}\r\nimg{\r\n    width: 60px;\r\n    height: 60px;\r\n}"],"names":[],"version":3,"file":"index.06f1091e.css.map"}
