@@ -1,0 +1,10 @@
+@import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
+
+.wrong {
+    border: 2px solid red;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+}
